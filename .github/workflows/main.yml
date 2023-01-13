@@ -1,9 +1,7 @@
 name: Commit Log
 
 on:
-  push:
-    branches:
-      - main
+  push
 
 jobs:
   log-commit:
