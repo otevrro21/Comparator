@@ -1,0 +1,22 @@
+name: Commit Log
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  log-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Get commit ID
+      run: echo ${{ github.sha }} >> commit_log.txt
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "your_email@example.com"
+        git config --local user.name "YourName"
+        git add commit_log.txt
+        git commit -m "Add commit ID to log"
+        git push origin main
