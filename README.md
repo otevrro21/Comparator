@@ -1,2 +1,2 @@
 # C
-C is a repository for sharing source code with my teacher and fellow students.
+C is a repository of my projects written in the C language.
