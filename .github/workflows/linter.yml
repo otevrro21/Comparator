@@ -1,0 +1,19 @@
+name: Super Linter
+
+on:
+  push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install super-linter
+      run: |
+        git clone https://github.com/github/super-linter.git
+        cd super-linter
+        ./install.sh
+    - name: Run super-linter
+      run: |
+        super-linter
