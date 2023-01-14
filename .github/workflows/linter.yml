@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: github/super-linter@v3.17.0
+      uses: github/super-linter@v4.10.0
     - name: Install super-linter
       run: |
         git clone https://github.com/github/super-linter.git
