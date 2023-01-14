@@ -1,10 +1,10 @@
 Black - \033[0;30m
-Red - \033[0;31m
-Green - \033[0;32m
-Yellow - \033[0;33m
-Blue - \033[0;34m
-Purple - \033[0;35m
-Cyan - \033[0;36m
+Red - \033[0;31m -1
+Green - \033[0;32m -2
+Yellow - \033[0;33m -3
+Blue - \033[0;34m -4
+Purple - \033[0;35m -5
+Cyan - \033[0;36m -6
 White - \033[0;37m
 
 To change the text to be bold, change the [0 to [1.
