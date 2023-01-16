@@ -110,6 +110,9 @@ int comparison(){
     if(x > y){
         return x;
     }
+    else if(x < y){
+        return y;
+    }
 }
 
 int main(){
