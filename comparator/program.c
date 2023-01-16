@@ -66,6 +66,12 @@ void menu_after_input(){ //this is the menu that lets you continue, edit your in
         color_reset();
         //quit the application
     }
+    else{
+        color(1);
+        printf("Input error, try again.\n");
+        color_reset();
+        menu_after_input();
+    }
 }
 
 void first_num_input(){ //read the first input
@@ -100,10 +106,19 @@ void second_num_input(){ //read the second input
         first_num_input();
     }
 }
-
+int comparison(){
+    if(x > y){
+        return x;
+    }
+}
 
 int main(){
     printf("\033[0;31m----- COMPARATOR -----\n\033[0;37mThis console app takes two numbers as input and outputs which one is greater.\nYou can enter only whole numbers in range from 0 to 100, otherwise the app won't work.\n");
     first_num_input();
     second_num_input();
+    printf("The number ");
+    color(6);
+    printf("%d", comparison());
+    color_reset();
+    printf(" is greater.");
 }
