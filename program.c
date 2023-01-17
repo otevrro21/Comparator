@@ -4,8 +4,9 @@
 int x;
 int y;
 int menu_select;
+int end_menu_select;
 
-void color(), color_reset(), menu_after_input(), first_num_input(), second_num_input();
+void color(), color_reset(), menu_after_input(), first_num_input(), second_num_input(), comparison(), end_menu(), comparator();
 
 /*
 For color change use the color function with parameter of 1-6
@@ -49,7 +50,6 @@ void menu_after_input(){ //this is the menu that lets you continue, edit your in
         color(2);
         printf("'Continue'\n");
         color_reset();
-        system("cls");
         //continue to run the program
     }
     else if(menu_select == 2){
@@ -58,7 +58,6 @@ void menu_after_input(){ //this is the menu that lets you continue, edit your in
         color(3);
         printf("'Edit'\n");
         color_reset();
-        system("cls");
         first_num_input();
     }
     else if(menu_select == 3){
@@ -67,14 +66,12 @@ void menu_after_input(){ //this is the menu that lets you continue, edit your in
         color(1);
         printf("'Quit'\n");
         color_reset();
-        system("cls");
         //quit the application
     }
     else{
         color(1);
         printf("Input error, try again.\n");
         color_reset();
-        system("cls");
         menu_after_input();
     }
 }
@@ -82,7 +79,7 @@ void menu_after_input(){ //this is the menu that lets you continue, edit your in
 void first_num_input(){ //read the first input
     printf("\nType the first number and press Enter: ");
     scanf("%d", &x);
-    system("cls");
+    ;
     if(x >= 0 && x <= 100){
         color(4);
         printf("\nYour input: %d\n", x);
@@ -99,7 +96,7 @@ void first_num_input(){ //read the first input
 void second_num_input(){ //read the second input
     printf("\nType the second number and press Enter: ");
     scanf("%d", &y);
-    system("cls");
+    ;
     if(y >= 0 && y <= 100){
         color(4);
         printf("\nYour input: %d\n", y);
@@ -113,8 +110,8 @@ void second_num_input(){ //read the second input
         first_num_input();
     }
 }
-void comparison(){
-    printf("First number: \033[0;34m%d\033[0;37m\n", x);
+void comparison(){ //compare the two numbers
+    printf("\nFirst number: \033[0;34m%d\033[0;37m\n", x);
     printf("Second number: \033[0;34m%d\033[0;37m\n", y);
     if(x > y){
         printf("The number ");
@@ -137,11 +134,32 @@ void comparison(){
         color_reset();
     }
 }
-
-int main(){
-    system("cls");
-    printf("\033[0;31m----- COMPARATOR -----\n\033[0;37mThis console app takes two numbers as input and outputs which one is greater.\nYou can enter only whole numbers in range from 0 to 100, otherwise the app won't work.\n");
+void end_menu(){ //menu at the end of the app
+    printf("\n\n1 - Start over\n2 - Quit\nSelect one of the above: ");
+    scanf("%d", &end_menu_select);
+    if(end_menu_select == 1){
+        color(3);
+        printf("You selected ");
+        color(2);
+        printf("'Start over'");
+        color_reset();
+        comparator();
+    }
+    else if(end_menu_select == 2){
+        printf("You selected ");
+        color(1);
+        printf("'Quit'");
+        color_reset();
+    }
+}
+void comparator(){
     first_num_input();
     second_num_input();
     comparison();
+    end_menu();
+}
+int main(){
+    system("cls");
+    printf("\033[0;31m----- COMPARATOR -----\n\033[0;37mThis console app takes two numbers as input and outputs which one is greater.\nYou can enter only whole numbers in range from 0 to 100, otherwise the app won't work.\n");
+    comparator();
 }
