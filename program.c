@@ -42,7 +42,7 @@ void color_reset(){ //this resets color to default white
 }
 
 void menu_after_input(){ //this is the menu that lets you continue, edit your input or quit the app
-    printf("\n1 - Continue\n2 - Edit\n3 - Quit\nChoose one of above: ");
+    printf("\n1 - Continue\n2 - Edit\n3 - Quit\nChoose one of above and press Enter: ");
     scanf("%d", &menu_select);
     if(menu_select == 1){
         color(4);
@@ -67,10 +67,11 @@ void menu_after_input(){ //this is the menu that lets you continue, edit your in
         printf("'Quit'\n");
         color_reset();
         //quit the application
+        exit(0);
     }
     else{
         color(1);
-        printf("Input error, try again.\n");
+        printf("\nInput error, try again.\n");
         color_reset();
         menu_after_input();
     }
@@ -88,7 +89,7 @@ void first_num_input(){ //read the first input
     }
     else{
         color(1);
-        printf("Input error, try again.\n");
+        printf("\nInput error, try again.\n");
         color_reset();
         first_num_input();
     }
@@ -105,7 +106,7 @@ void second_num_input(){ //read the second input
     }
     else{
         color(1);
-        printf("Input error, try again.\n");
+        printf("\nInput error, try again.\n");
         color_reset();
         first_num_input();
     }
@@ -139,17 +140,25 @@ void end_menu(){ //menu at the end of the app
     scanf("%d", &end_menu_select);
     if(end_menu_select == 1){
         color(3);
-        printf("You selected ");
+        printf("\nYou selected ");
         color(2);
-        printf("'Start over'");
+        printf("'Start over'\n");
         color_reset();
         comparator();
     }
     else if(end_menu_select == 2){
-        printf("You selected ");
+        color(3);
+        printf("\nYou selected ");
         color(1);
-        printf("'Quit'");
+        printf("'Quit'\n");
         color_reset();
+        exit(0);
+    }
+    else{
+        color(1);
+        printf("\nInput error, try again.\n");
+        color_reset();
+        end_menu();
     }
 }
 void comparator(){
