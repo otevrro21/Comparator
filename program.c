@@ -144,6 +144,7 @@ void end_menu(){ //menu at the end of the app
         color(2);
         printf("'Start over'\n");
         color_reset();
+        system("cls");
         comparator();
     }
     else if(end_menu_select == 2){
