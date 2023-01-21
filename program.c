@@ -73,6 +73,10 @@ void menu_after_input(){
     else if(menu_select == 3){
         //SAVE AND QUIT
     }
+    else{
+        printf("Input Error, try again.\n");
+        menu_after_input();
+    }
 }
 void end_menu(){
     printf("\nDo you wish to compare another pair of numbers or do you want to quit the program...\n1 - Compare another pair\n2 - Quit\nSelect one of above: ");
@@ -82,6 +86,10 @@ void end_menu(){
     }
     else if(menu_select == 2){
         //SAVE AND QUIT
+    }
+    else{
+        printf("Input Error, try again.\n");
+        end_menu();
     }
 }
 
