@@ -1,30 +1,33 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 //variable declaration
 short first_num;
 short second_num;
 short cycle;//cycle is used for selecting the right function call in the menu_after_input()
 short menu_select;
+FILE *logfile;
 
 void menu_after_input(), end_menu();
 
 void color(char color_select[100]) {//this function is for coloring the text output
-    if (color_select == "red"){
+    if (color_select == "red") {
         printf("\033[0;31m");
     }
-    else if (color_select == "green"){
+    else if (color_select == "green") {
         printf("\033[0;32m");
     }
-    else if (color_select == "yellow"){
+    else if (color_select == "yellow") {
         printf("\033[0;33m");
     }
-    else if (color_select == "blue"){
+    else if (color_select == "blue") {
         printf("\033[0;34m");
     }
-    else if (color_select == "purple"){
+    else if (color_select == "purple") {
         printf("\033[0;35m");
     }
-    else if (color_select == "cyan"){
+    else if (color_select == "cyan") {
         printf("\033[0;36m");
     }
 }
@@ -56,7 +59,7 @@ void second_num_input() {//prompt the user for second number input and save it t
     printf("\nInput second whole number and hit Enter: ");
     scanf("%d", &second_num);
     printf("\n");
-    if (second_num < 0 || second_num > 100){
+    if (second_num > 100) {
         printf("Input Error, try again.\n");
         second_num_input();
     }
@@ -64,13 +67,13 @@ void second_num_input() {//prompt the user for second number input and save it t
 }
 
 void comparison() {
-    if (first_num > second_num){
+    if (first_num > second_num) {
         printf("\nThe number %d is greater than %d.\n", first_num, second_num);
     }
-    else if (first_num < second_num){
+    else if (first_num < second_num) {
         printf("\nThe number %d is greater than %d.\n", second_num, first_num);
     }
-    else if (first_num == second_num){
+    else if (first_num == second_num) {
         printf("\nNone of the numbers is greater than the other, because they are equal.\n");
     }
     end_menu();
@@ -78,16 +81,16 @@ void comparison() {
 
 void menu_after_input() {//menu prompting the user to continue, edit their input or to quit the app
     color("blue");
-    if (cycle == 0){
+    if (cycle == 0) {
         printf("Your input: %d\n", first_num);
     }
-    else if (cycle == 1){
+    else if (cycle == 1) {
         printf("Your input: %d\n", second_num);
     }
     color_rst();
-    printf("Do you wish to...\n1 - Continue\n2 - Edit your input\n3 - Quit the program\nSelect one of above: ");
+    printf("Do you wish to...\n1 - Continue\n2 - Edit your input\n3 - Save and Quit\nSelect one of above: ");
     scanf("%d", &menu_select);
-    if (menu_select == 1){
+    if (menu_select == 1) {
         if (cycle == 0){
             second_num_input();
         }
@@ -95,7 +98,7 @@ void menu_after_input() {//menu prompting the user to continue, edit their input
             comparison();
         }
     }
-    else if (menu_select == 2){
+    else if (menu_select == 2) {
         printf("\nYou selected 'EDIT'\n");
         if (cycle == 0){
             first_num_input();
@@ -104,8 +107,14 @@ void menu_after_input() {//menu prompting the user to continue, edit their input
             second_num_input();
         }
     }
-    else if (menu_select == 3){
+    else if (menu_select == 3) {
         //SAVE AND QUIT
+        logfile = fopen("log.txt", "w");
+        fprintf(logfile, "%d %d %d", first_num, second_num, cycle);
+        fclose(logfile);
+        printf("Your progres has been saved.");
+        sleep(3);
+        exit(0);
     }
     else {
         printf("Input Error, try again.\n");
@@ -115,11 +124,11 @@ void menu_after_input() {//menu prompting the user to continue, edit their input
 void end_menu() {//this menu will appear at the end of the program and prompt the user to start over or quit the app
     printf("\nDo you wish to compare another pair of numbers or do you want to quit the program...\n1 - Compare another pair\n2 - Quit\nSelect one of above: ");
     scanf("%d", &menu_select);
-    if (menu_select == 1){
+    if (menu_select == 1) {
         first_num_input();
     }
-    else if (menu_select == 2){
-        //SAVE AND QUIT
+    else if (menu_select == 2) {
+        exit(0);
     }
     else {
         printf("Input Error, try again.\n");
