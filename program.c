@@ -4,7 +4,6 @@ int first_num;
 int second_num;
 int cycle = 0;
 int menu_select;
-int num_check;
 
 void menu_after_input(), end_menu();
 
