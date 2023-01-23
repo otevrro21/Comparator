@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-int first_num;
-int second_num;
-int cycle = 0;
-int menu_select;
+short first_num;
+short second_num;
+short cycle = 0;
+short menu_select;
 
 void menu_after_input(), end_menu();
 
