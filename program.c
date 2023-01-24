@@ -110,7 +110,7 @@ void menu_after_input() {//menu prompting the user to continue, edit their input
     else if (menu_select == 3) {
         //SAVE AND QUIT
         logfile = fopen("log.txt", "w");
-        fprintf(logfile, "%d %d %d", first_num, second_num, cycle);
+        fprintf(logfile, "%d;%d;%d", first_num, second_num, cycle);
         fclose(logfile);
         printf("Your progres has been saved.");
         sleep(3);
@@ -134,6 +134,17 @@ void end_menu() {//this menu will appear at the end of the program and prompt th
         printf("Input Error, try again.\n");
         end_menu();
     }
+}
+
+int progress_recover() {
+    logfile = fopen("log.txt","r");
+    if (logfile == NULL) {
+        color("red");
+        printf("Error opening log file!");
+        color_rst();
+        return 1;
+    }
+    fscanf(logfile, "%d", );
 }
 
 int main() {//main function
