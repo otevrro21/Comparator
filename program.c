@@ -74,7 +74,7 @@ void second_num_input() {//prompt the user for second number input and save it t
 
 void comparison() {
     if (first_num > second_num) {
-        printf("\nThe number %d is greater than %d.\n", first_num, second_num);
+        printf("\nThe number \033[0;36m%d\033[0;37m is greater than \033[0;36m%d\033[0;37m.\n", first_num, second_num);
     }
     else if (first_num < second_num) {
         printf("\nThe number \033[0;36m%d\033[0;37m is greater than \033[0;36m%d\033[0;37m.\n", second_num, first_num);
