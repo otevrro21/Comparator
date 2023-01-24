@@ -200,7 +200,7 @@ int progress_recovery() {
     }
     if (quit_rst == 0) {
         color("yellow");
-        printf("Progress recovered!\n\n");
+        printf("Progress restored!\n\n");
         color_rst();
     }
     else if (quit_rst == 1) {
