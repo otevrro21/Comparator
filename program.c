@@ -3,10 +3,12 @@
 #include <unistd.h>
 
 //variable declaration
-short first_num;
-short second_num;
-short cycle;//cycle is used for selecting the right function call in the menu_after_input()
-short menu_select;
+int first_num;
+int second_num;
+int cycle;//cycle is used for selecting the right function call in the menu_after_input()
+int menu_select;
+int log_read;
+int recovery_cycle = 0;
 FILE *logfile;
 
 void menu_after_input(), end_menu();
@@ -48,7 +50,7 @@ void first_num_input() {//prompt the user for first number input and save it to 
     printf("\nInput first whole number and hit Enter: ");
     scanf("%d", &first_num);
     printf("\n");
-    if (first_num > 100){
+    if (first_num < 0 || first_num > 100){
         printf("Input Error, try again.\n");
         first_num_input();
     }
@@ -59,7 +61,7 @@ void second_num_input() {//prompt the user for second number input and save it t
     printf("\nInput second whole number and hit Enter: ");
     scanf("%d", &second_num);
     printf("\n");
-    if (second_num > 100) {
+    if (second_num < 0 || second_num > 100) {
         printf("Input Error, try again.\n");
         second_num_input();
     }
@@ -137,17 +139,41 @@ void end_menu() {//this menu will appear at the end of the program and prompt th
 }
 
 int progress_recover() {
-    logfile = fopen("log.txt","r");
+    logfile = fopen("log.txt", "r");
     if (logfile == NULL) {
         color("red");
         printf("Error opening log file!");
         color_rst();
         return 1;
     }
-    fscanf(logfile, "%d", );
+    while (fscanf(logfile, "%d;", &log_read) != EOF) {
+        if (recovery_cycle == 0) {
+            first_num = log_read;
+            printf("Number read: %d\n", log_read);
+        }
+        else if (recovery_cycle == 1) {
+            second_num = log_read;
+            printf("Number read: %d\n", log_read);
+        }
+        else if (recovery_cycle == 2) {
+            cycle = log_read;
+            printf("Number read: %d\n", log_read);
+        }
+        else if (recovery_cycle >= 3) {
+            break;
+        }
+        recovery_cycle ++;
+    }
+    if (cycle == 0 || cycle == 1) {
+        menu_after_input();
+    }
+    else {
+        return 1;
+    }
 }
 
 int main() {//main function
+    progress_recover();
     program_intro();
     first_num_input();
     return 0;
