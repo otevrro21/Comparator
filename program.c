@@ -86,7 +86,7 @@ void comparison() {
 }
 
 void menu_after_input() {//menu prompting the user to continue, edit their input or to quit the app
-    color("blue");
+    color("cyan");
     if (cycle == 0) {
         printf("First number: %d\n", first_num);
     }
@@ -142,7 +142,7 @@ void menu_after_input() {//menu prompting the user to continue, edit their input
     }
     else {
         color("red");
-        printf("Input Error, try again.\n");
+        printf("\nInput Error, try again.\n\n");
         color_rst();
         menu_after_input();
     }
@@ -169,7 +169,7 @@ void end_menu() {//this menu will appear at the end of the program and prompt th
     }
     else {
         color("red");
-        printf("\nInput Error, try again.\n");
+        printf("\nInput Error, try again.\n\n");
         color_rst();
         end_menu();
     }
@@ -203,8 +203,13 @@ int progress_recovery() {
         printf("Progress recovered!\n\n");
         color_rst();
     }
+    else if (quit_rst == 1) {
+        program_intro();
+    }
+    else {
+        return 1;
+    }
     if (cycle == 0 || cycle == 1) {
-        
         menu_after_input();
     }
     else {
