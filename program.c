@@ -12,6 +12,14 @@ int quit_rst;
 FILE *log_file;
 
 void menu_after_input(), end_menu(), program_intro(), first_num_input(), second_num_input(), color(), color_rst(), comparison();
+int progress_recovery();
+
+int main() {//main function
+    system("cls");
+    progress_recovery();
+    program_intro();
+    return 0;
+}
 
 void color(char color_select[5]) {//this function is for coloring the text output
     if (color_select == "red") {
@@ -217,9 +225,3 @@ int progress_recovery() {
     }
 }
 
-int main() {//main function
-    system("cls");
-    progress_recovery();
-    program_intro();
-    return 0;
-}
