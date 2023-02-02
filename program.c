@@ -224,4 +224,3 @@ int progress_recovery() {
         return 1;
     }
 }
-
